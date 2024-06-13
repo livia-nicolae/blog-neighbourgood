@@ -11,8 +11,7 @@ Techniquement, vous savez déjà tout faire.
 La principale difficulté de l'exercice est de **gérer son temps**.
 
 Même si vous avez toujours quelqu'un derrière votre épaule pour vous 'guider',
-
-Vous êtes en totale autonomie sur le sujet.
+vous êtes en **totale autonomie** sur le sujet.
 
 ## Objectifs
 
@@ -31,7 +30,7 @@ Dans un contexte professionnel, le livrable doit contenir tous les documents lis
 
 Vous n'aurez probablement pas le temps de les fournir tous.
 
-Il va donc falloir faire des choix, ou fournir des documents de moindre qualité (une photo peut suffire pour un schéma...)
+Il va donc falloir **faire des choix**, ou fournir des documents de moindre qualité (une photo peut suffire pour un schéma...)
 
 **Libre à vous !**
 
