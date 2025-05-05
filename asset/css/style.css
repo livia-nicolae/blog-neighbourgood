@@ -1,0 +1,124 @@
+:root {
+    --color-primary: #5DADE2;
+    --color-primary-dark: #0D3C5F;
+    --color-secondary: #22D9EA;
+    --color-accent: #DB5116;
+    --color-background: #FAF9F6;
+    --color-text: #2C3E50;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--color-background, white);
+    color: var(--color-text, black);
+}
+
+header {
+    background-color: var(--color-primary, #333);
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: var(--color-text, gray);
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.articles {
+    flex: 3;
+    padding-right: 20px;
+    border-right: 1px solid #ddd;
+}
+
+.article-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.article-item h3 a {
+    text-decoration: none;
+}
+
+.article-item h3 a:hover {
+    color: var(--color-primary, #007bff);
+    border: 1px solid var(--color-accent, #007bff);
+}
+
+.publish-date {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+}
+
+.read-more a {
+    text-decoration: none;
+}
+
+.read-more a:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    flex: 1;
+    padding-left: 20px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--color-primary, #333);
+    font-size: 0.8em;
+}
