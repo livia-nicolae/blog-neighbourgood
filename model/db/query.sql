@@ -9,6 +9,11 @@ SELECT article.id, article.title, article.content, article.created_at, article.p
 FROM article
 ;
 
+-- Requête pour afficher toutes les articles ordonnés par date de publication
+SELECT article.id, article.title, article.content, article.created_at, article.published_at, article.updated_at, article.account_id, article.category_id, article.is_published
+FROM article ORDER BY published_at DESC
+;
+
 -- Requête pour afficher tous les articles écrits par un utilisateur 
 SELECT article.id, article.title, article.content, article.created_at, article.published_at, article.updated_at, article.account_id, article.category_id, article.is_published
 FROM article
