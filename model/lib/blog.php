@@ -35,7 +35,7 @@ class blog
         return $article;
     }
 
-    //Affiche tous les commentaires d'un article
+    //Liste tous les commentaires d'un article
     public static function listComment($id): array
     {
         $query = 'SELECT comment.id, comment.article_id, comment.account_id, comment.content, comment.created_at, comment.updated_at, comment.is_approved FROM comment';
@@ -47,5 +47,22 @@ class blog
         $listComment = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $listComment;
+    }
+    //Liste les catégories
+    public static function listCategory(): array
+    {
+        $query = 'SELECT category.id, category.name FROM category;';
+        $statement = LibDb::connect()->prepare($query);
+        $successOrFailure = $statement->execute();
+        $listCategory = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $listCategory;
+    }
+
+    //Crée un nouvel article
+    public static function createArticle($title, $content, $category_id)
+    {
+        $query = 'INSERT INTO article (title, content, account_id, category_id, is_published) VALUES (:title, :content, 210, :category_id, 0);';
+        
     }
 }

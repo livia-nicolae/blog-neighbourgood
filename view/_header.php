@@ -31,7 +31,9 @@
                 <?php } ?>
 
                 <!-- Ajouter un article -->
-
+               
+                    <li><a href="/ctrl/article-add-display.php">Ajouter un article</a></li>
+             
                 <!-- Se déconnecter -->
                 <?php if (isset($_SESSION['user'])) { ?>
                     <li><a href="/ctrl/logout.php">Se déconnecter</a></li>
