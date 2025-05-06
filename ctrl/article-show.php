@@ -27,10 +27,11 @@ class ArticleShow extends Ctrl
     /** @Override */
     public function do(): void
     {
+        //Expose à la vue les détails de l'article d'aprés son ID
         $id = $_GET['id'];
         $article = LibBlog::getArticle($id);
         $this->addViewArg('article', $article);
-        
+        // ... et ses commentaires
         $listComment = LibBlog::listComment($id);
         $this->addViewArg('listComment', $listComment);
     }
