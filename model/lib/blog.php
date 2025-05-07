@@ -83,4 +83,32 @@ class blog
 
         return $successOrFailure;
     }
+
+    //Liste les articles publiés par un utilisateur d'après son id
+    public static function listArticleByAccount($id): array
+    {
+        $query = 'SELECT article.id, article.title, article.content, article.created_at, article.published_at, article.updated_at, article.account_id, article.category_id, article.is_published';
+        $query .= ' FROM article JOIN account ON article.account_id = account.id';
+        $query .= ' WHERE account_id = :id;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+        $listArticleByAccount = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $listArticleByAccount;
+    }
+
+    //Liste les commentaires publiés par un utilisateur d'après son id
+    public static function listCommentByAccount($id): array
+    {
+        $query = 'SELECT comment.id, comment.article_id, comment.account_id, comment.content, comment.created_at, comment.updated_at, comment.is_approved FROM comment';
+        $query .= ' JOIN account ON comment.account_id = account.id';
+        $query .= ' WHERE account_id = :id;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+        $listCommentByAccount = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $listCommentByAccount;
+    }
 }
