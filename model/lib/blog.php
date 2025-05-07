@@ -14,7 +14,7 @@ class blog
     public static function listArticle(): array
     {
         $query = 'SELECT article.id, article.title, article.content, article.created_at, article.published_at, article.updated_at, article.account_id, article.category_id, article.is_published';
-        $query .= ' FROM article;';
+        $query .= ' FROM article ORDER BY published_at DESC';
         $statement = LibDb::connect()->prepare($query);
         $statement->execute();
         $listArticle = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -40,7 +40,7 @@ class blog
     {
         $query = 'SELECT comment.id, comment.article_id, comment.account_id, comment.content, comment.created_at, comment.updated_at, comment.is_approved FROM comment';
         $query .= ' JOIN article ON comment.article_id = article.id';
-        $query .= ' WHERE article.id = :id;';
+        $query .= ' WHERE article.id = :id  ORDER BY created_at DESC;';
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':id', $id);
         $statement->execute();
@@ -89,7 +89,7 @@ class blog
     {
         $query = 'SELECT article.id, article.title, article.content, article.created_at, article.published_at, article.updated_at, article.account_id, article.category_id, article.is_published';
         $query .= ' FROM article JOIN account ON article.account_id = account.id';
-        $query .= ' WHERE account_id = :id;';
+        $query .= ' WHERE account_id = :id  ORDER BY created_at DESC;';
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':id', $id);
         $statement->execute();
@@ -103,12 +103,35 @@ class blog
     {
         $query = 'SELECT comment.id, comment.article_id, comment.account_id, comment.content, comment.created_at, comment.updated_at, comment.is_approved FROM comment';
         $query .= ' JOIN account ON comment.account_id = account.id';
-        $query .= ' WHERE account_id = :id;';
+        $query .= ' WHERE account_id = :id  ORDER BY created_at DESC;';
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':id', $id);
         $statement->execute();
         $listCommentByAccount = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $listCommentByAccount;
+    }
+    //Liste les articles d'une catégorie
+    public static function listArticleFromCategory($id): array
+    {
+        $query = 'SELECT article.id, article.title, article.content, article.created_at, article.published_at, article.updated_at, article.account_id, article.category_id, article.is_published';
+        $query .= ' FROM article JOIN category ON article.category_id = category.id WHERE category.id = :id ORDER BY published_at DESC;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+        $listArticleFromCategory = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $listArticleFromCategory;
+    }
+    //Affiche les détails d'une catégorie
+    public static function getCategory($id): ?array
+    {
+        $query = 'SELECT category.id, category.name FROM category WHERE category.id = :id;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+        $category = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $category;
     }
 }

@@ -29,6 +29,9 @@ class Main extends Ctrl
         // Liste les articles
         $listArticle = LibBlog::listArticle();
         $this->addViewArg('listArticle', $listArticle);
+        //Liste les catégories
+        $listCategory = LibBlog::listCategory();
+        $this->addViewArg('listCategory', $listCategory);
     }
 }
 

@@ -14,11 +14,13 @@
     <aside class="sidebar">
         <h2>Catégories</h2>
         <ul>
-            <li><a href="/category/actualites-du-quartier">Actualités du Quartier</a></li>
-            <li><a href="/category/vie-pratique">Vie Pratique</a></li>
-            <li><a href="/category/initiatives-locales">Initiatives Locales</a></li>
-            <li><a href="/category/culture-loisirs">Culture & Loisirs</a></li>
-            <li><a href="/category/paroles-de-voisins">Paroles de Voisins</a></li>
+        <?php foreach ($args['listCategory'] as $category): ?>
+            <li>
+                <a href="/ctrl/category.php?id=<?= $category['id'] ?>">
+                    <?= ($category['name']) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
         </ul>
 
 </main>
