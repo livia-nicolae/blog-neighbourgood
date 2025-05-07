@@ -9,8 +9,8 @@ use PDO;
 use App\Model\Lib\Db\Lib as LibDb;
 
 class user 
-{
-    public static function createUser($username, $email, $password, $hashedPassword): bool
+{   //Création d'un nouveau compte
+    public static function createAccount($username, $email, $password, $hashedPassword): bool
     {
         $query = 'INSERT INTO account(username, email, password, hashed_password, is_banned) VALUES(:username, :email, :password, :hashed_password, 0);';
         $statement = LibDb::connect()->prepare($query);
@@ -21,5 +21,22 @@ class user
         $successOrFailure = $statement->execute();
 
         return $successOrFailure;
+    }
+
+    //Obtient un utilisateur d'aprés son email
+    public static function getAccount(string $email): ?array
+    {
+
+        $query = 'SELECT account.id, account.username, account.email, account.password, account.hashed_password, account.role, account.created_at, account.updated_at, account.is_banned FROM account WHERE account.email=:email;';
+
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':email', $email);
+        $statement->execute();
+        $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if ($user === false) {
+            $user = null;
+        }
+        return $user;
     }
 }

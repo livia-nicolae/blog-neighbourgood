@@ -39,7 +39,7 @@ class UserRegister extends Ctrl
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
 
         //Création de nouvel utilisateur
-        $newUser = LibUser::createUser($username, $email, $password, $hashedPassword);
+        $newUser = LibUser::createAccount($username, $email, $password, $hashedPassword);
 
         // Ajoute une notification de succès
         $_SESSION['msg']['success'] = 'Inscription réussite.';
