@@ -22,10 +22,10 @@
         <?php else: ?>
             <p>Soyez le premier à commenter cet article !</p>
         <?php endif; ?>
-        <div class="comment-form">
-            <a href="/ctrl/comment-add-display.php?article_id=<?= $args['article']['id'] ?>">Laisser un commentaire</a>
-        </div>
-           
     </section>
-</main>
-
+    <h3>Laisser un commentaire</h3>
+    <form action="/ctrl/comment-add.php" method="post">
+        <textarea name="content" rows="5" placeholder="Votre commentaire..."></textarea><br>
+        <input name="idArticle" type="hidden" value="<?= $args['article']['id'] ?>">
+        <button type="submit">Poster le commentaire</button>
+    </form>

@@ -29,9 +29,9 @@ class blog
         $query .= ' FROM article WHERE article.id=:id;';
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':id', $id);
-        $successOrFailure = $statement->execute();
+        $statement->execute();
         $article = $statement->fetch(PDO::FETCH_ASSOC);
-   
+
         return $article;
     }
 
@@ -43,7 +43,7 @@ class blog
         $query .= ' WHERE article.id = :id;';
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':id', $id);
-        $successOrFailure = $statement->execute();
+        $statement->execute();
         $listComment = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $listComment;
@@ -53,16 +53,34 @@ class blog
     {
         $query = 'SELECT category.id, category.name FROM category;';
         $statement = LibDb::connect()->prepare($query);
-        $successOrFailure = $statement->execute();
+        $statement->execute();
         $listCategory = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $listCategory;
     }
 
     //Crée un nouvel article
-    public static function createArticle($title, $content, $category_id)
+    public static function createArticle($title, $content, $category_id): bool
     {
         $query = 'INSERT INTO article (title, content, account_id, category_id, is_published) VALUES (:title, :content, 210, :category_id, 0);';
-        
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':title', $title);
+        $statement->bindParam(':content', $content);
+        $statement->bindParam(':category_id', $category_id);
+        $successOrFailure = $statement->execute();
+
+        return $successOrFailure;
+    }
+
+    //Ajout un commentaire
+    public static function createComment($idArticle, $content): bool
+    {
+        $query = ' INSERT INTO comment(article_id, account_id, content, is_approved) VALUES(:idArticle, 210, :content, 1);';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':idArticle', $idArticle);
+        $statement->bindParam(':content', $content);
+        $successOrFailure = $statement->execute();
+
+        return $successOrFailure;
     }
 }
