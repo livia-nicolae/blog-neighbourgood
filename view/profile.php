@@ -47,7 +47,7 @@
                 <?php foreach ($args['commentsByAccount'] as $comment): ?>
                     <li class="comment-item">
                         <p class="comment-date">Le <?= date('d/m/Y à H:i', strtotime($comment['created_at'])) ?></p>
-                        <p>Sur l'article: <a href="/article/<?= $comment['article_id'] ?>"><?= $comment['article_id'] ?></a></p>
+                        <p>Sur l'article: <a href="/article/<?= $comment['article_title'] ?>"><?= $comment['article_id'] ?></a></p>
                         <p class="comment-content"><?= nl2br($comment['content']) ?></p>
                     </li>
                 <?php endforeach; ?>

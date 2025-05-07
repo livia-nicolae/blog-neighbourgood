@@ -24,8 +24,12 @@
         <?php endif; ?>
     </section>
     <h3>Laisser un commentaire</h3>
-    <form action="/ctrl/comment-add.php" method="post">
-        <textarea name="content" rows="5" placeholder="Votre commentaire..."></textarea><br>
-        <input name="idArticle" type="hidden" value="<?= $args['article']['id'] ?>">
-        <button type="submit">Poster le commentaire</button>
-    </form>
+    <?php if (isset($_SESSION['user'])) : ?>
+        <form action="/ctrl/comment-add.php" method="post">
+            <textarea name="content" rows="5" placeholder="Votre commentaire..."></textarea><br>
+            <input name="idArticle" type="hidden" value="<?= $args['article']['id'] ?>">
+            <button type="submit">Poster le commentaire</button>
+        </form>
+    <?php else : ?>
+        <p>Vous devez être <a href="/ctrl/login-display.php">connecté</a> pour laisser un commentaire.</p>
+    <?php endif; ?>

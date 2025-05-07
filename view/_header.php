@@ -27,13 +27,25 @@
 
                 <!-- Visualiser mon profil -->
                 <?php if (isset($_SESSION['user'])) { ?>
-                    <li><a href="/ctrl/profile.php"><?= $_SESSION['user']['email'] ?></a></li>
+                    <li>
+                        <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
+                            <a href="/ctrl/admin.php"><?= $_SESSION['user']['email'] ?> (Admin)</a>
+                        <?php endif; ?>
+                        <?php if (!(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?>
+                            <a href="/ctrl/profile.php"><?= $_SESSION['user']['email'] ?></a>
+                        <?php endif; ?>
+                    </li>
                 <?php } ?>
 
                 <!-- Ajouter un article -->
-               
-                    <li><a href="/ctrl/article-add-display.php">Ajouter un article</a></li>
-             
+                <li>
+                    <?php if (isset($_SESSION['user'])) : ?>
+                        <a href="/ctrl/article-add-display.php">Ajouter un article</a>
+                    <?php else : ?>
+                        <a href="/ctrl/login-display.php">Ajouter un article (Se connecter)</a>
+                    <?php endif; ?>
+                </li>
+
                 <!-- Se déconnecter -->
                 <?php if (isset($_SESSION['user'])) { ?>
                     <li><a href="/ctrl/logout.php">Se déconnecter</a></li>
