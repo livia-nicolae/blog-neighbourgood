@@ -8,7 +8,7 @@ use PDO;
 
 use App\Model\Lib\Db\Lib as LibDb;
 
-class user 
+class user
 {   //Création d'un nouveau compte
     public static function createAccount($username, $email, $password, $hashedPassword): bool
     {
@@ -28,7 +28,6 @@ class user
     {
 
         $query = 'SELECT account.id, account.username, account.email, account.password, account.hashed_password, account.role, account.created_at, account.updated_at, account.is_banned FROM account WHERE account.email=:email;';
-
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':email', $email);
         $statement->execute();
@@ -38,5 +37,15 @@ class user
             $user = null;
         }
         return $user;
+    }
+    public static function listAccount(): array
+    {
+        $query = 'SELECT account.id, account.username, account.email, account.role, account.created_at, account.updated_at, account.is_banned';
+        $query .= ' FROM account;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->execute();
+        $listAccounts = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $listAccounts;
     }
 }
