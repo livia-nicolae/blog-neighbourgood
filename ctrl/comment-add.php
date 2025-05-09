@@ -26,10 +26,20 @@ class CommentAdd extends Ctrl
     /** @Override */
     public function do(): void
     {
+        // Vérifier si l'utilisateur est connecté
+        if (!isset($_SESSION['user'])) {
+            // Rediriger vers la page de connexion
+            header("Location: /login");
+            exit();
+        }
+
+        // Récupérer l'ID de l'utilisateur depuis la session
+        $account_id = $_SESSION['user']['id'];
+
         //Lit les informations remplit dans le formulaire
         $idArticle = $_POST['idArticle'];
         $content = $_POST['content'];
-        LibBlog::createComment($idArticle, $content);
+        LibBlog::createComment($idArticle, $account_id, $content);
 
         //Redirige vers la page de détails article
         $this->redirectTo('/ctrl/article-show.php?id=' . $idArticle);

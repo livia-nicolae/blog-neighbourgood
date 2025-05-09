@@ -14,7 +14,7 @@
             <ul class="comments-list">
                 <?php foreach ($args['listComment'] as $comment): ?>
                     <li class="comment-item">
-                        <p class="comment-author">Par Utilisateur <?= ($comment['username']) ?> le <?= date('d/m/Y à H:i', strtotime($comment['created_at'])) ?></p>
+                        <p class="comment-author">L'utilisateur <strong><?= ($comment['username']) ?></strong> a commenté le <?= date('d/m/Y à H:i', strtotime($comment['created_at'])) ?> : </p>
                         <p><?= nl2br(($comment['content'])) ?></p>
                     </li>
                 <?php endforeach; ?>

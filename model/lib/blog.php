@@ -60,12 +60,13 @@ class blog
     }
 
     //Crée un nouvel article
-    public static function createArticle($title, $content, $category_id): bool
+    public static function createArticle($title, $content, $account_id, $category_id): bool
     {
-        $query = 'INSERT INTO article (title, content, account_id, category_id, is_published) VALUES (:title, :content, 210, :category_id, 0);';
+        $query = 'INSERT INTO article (title, content, account_id, category_id, is_published) VALUES (:title, :content, :account_id, :category_id, 0);';
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':title', $title);
         $statement->bindParam(':content', $content);
+        $statement->bindParam(':account_id', $account_id);
         $statement->bindParam(':category_id', $category_id);
         $successOrFailure = $statement->execute();
 
@@ -73,11 +74,12 @@ class blog
     }
 
     //Ajout un commentaire
-    public static function createComment($idArticle, $content): bool
+    public static function createComment($idArticle, $account_id, $content): bool
     {
-        $query = ' INSERT INTO comment(article_id, account_id, content, is_approved) VALUES(:idArticle, 210, :content, 1);';
+        $query = ' INSERT INTO comment(article_id, account_id, content, is_approved) VALUES(:idArticle, :account_id, :content, 1);';
         $statement = LibDb::connect()->prepare($query);
         $statement->bindParam(':idArticle', $idArticle);
+        $statement->bindParam(':account_id', $account_id);
         $statement->bindParam(':content', $content);
         $successOrFailure = $statement->execute();
 
