@@ -42,7 +42,7 @@
                     <?php if (isset($_SESSION['user'])) : ?>
                         <a href="/ctrl/article-add-display.php">Ajouter un article</a>
                     <?php else : ?>
-                        <a href="/ctrl/login-display.php">Ajouter un article (Se connecter)</a>
+                        <a href="/ctrl/login-display.php">Ajouter un article</a>
                     <?php endif; ?>
                 </li>
 
