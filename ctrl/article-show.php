@@ -31,9 +31,20 @@ class ArticleShow extends Ctrl
         $id = $_GET['id'];
         $article = LibBlog::getArticle($id);
         $this->addViewArg('article', $article);
-        // ... et ses commentaires
+        
+        // ... ses commentaires
         $listComment = LibBlog::listComment($id);
-        $this->addViewArg('listComment', $listComment);
+        $listCommentAug = [];
+        // Récupérer les noms d'utilisateur pour chaque commentaire
+        foreach ($listComment as $comment)
+        {
+            $author = LibBlog::getAccount($comment['account_id']);
+            $comment['username'] = $author['username']; 
+
+            $listCommentAug[] = $comment; 
+        }
+        //... et les expose à la vue
+        $this->addViewArg('listComment', $listCommentAug);
     }
 }
 // Exécute le Controlleur

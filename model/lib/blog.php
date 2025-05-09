@@ -134,4 +134,14 @@ class blog
 
         return $category;
     }
+    public static function getAccount($id): ?array
+    {
+        $query = ' SELECT account.id, account.username FROM account WHERE account.id = :id;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $statement->execute();
+        $accountUsername = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $accountUsername;
+    }
 }
