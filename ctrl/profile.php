@@ -31,14 +31,14 @@ class Profile extends Ctrl
         $username = $_SESSION['user']['username'];
         $email = $_SESSION['user']['email'];
         $role = $_SESSION['user']['role'];
-        $creationDate = $_SESSION['user']['created_at'];
+        $created_at = $_SESSION['user']['created_at'];
         $is_banned = $_SESSION['user']['is_banned'];
 
         // Les expose à la vue
         $this->addViewArg('username', $username);
         $this->addViewArg('email', $email);
         $this->addViewArg('role', $role);
-        $this->addViewArg('created_at', $creationDate);
+        $this->addViewArg('created_at', $created_at);
         $this->addViewArg('is_banned', $is_banned);
 
         //Charge les articles publiés par l'utilisateur
@@ -49,8 +49,18 @@ class Profile extends Ctrl
 
         //Charge les commentaires publiés par l'utilisateur
         $commentsByAccount = LibBlog::listCommentByAccount($id);
+        
+        //Construit une variable qui contient le titre d'article pour chaque commentaire
+        $commentsByAccountAug = [];
+
+        // Récupérer les titres des articles pour chaque commentaire
+        foreach ($commentsByAccount as $comment) {
+            $articleName = LibBlog::getArticle($comment['article_id']);
+            $comment['article_title'] = $articleName['title'];
+            $commentsByAccountAug[] = $comment;
+        }
         //Les expose à la vue
-        $this->addViewArg('commentsByAccount', $commentsByAccount);
+        $this->addViewArg('commentsByAccount', $commentsByAccountAug);
     }
 }
 

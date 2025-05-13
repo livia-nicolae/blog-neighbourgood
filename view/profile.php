@@ -36,7 +36,7 @@
                 <?php endforeach; ?>
             </ul>
         <?php else: ?>
-            <p>Cet utilisateur n'a pas encore publié d'articles.</p>
+            <p>Vous n'avez pas encore publié d'articles.</p>
         <?php endif; ?>
     </section>
     <section>
@@ -47,7 +47,7 @@
                 <?php foreach ($args['commentsByAccount'] as $comment): ?>
                     <li class="comment-item">
                         <p class="comment-date">Le <?= date('d/m/Y à H:i', strtotime($comment['created_at'])) ?></p>
-                        <p>Sur l'article: <a href="/article/<?= $comment['article_title'] ?>"><?= $comment['article_id'] ?></a></p>
+                        <p>Sur l'article: <strong> <?= $comment['article_title'] ?></strong></a></p>
                         <p class="comment-content"><?= nl2br($comment['content']) ?></p>
                     </li>
                 <?php endforeach; ?>
