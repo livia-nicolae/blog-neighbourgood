@@ -1,3 +1,4 @@
+
 <main>
     <section>
         <h2>Mes informations de compte</h2>
@@ -10,6 +11,7 @@
 
             <dt>Rôle: </dt>
             <dd><?= $args['role'];; ?></dd>
+        </dl>
 
             <?php if ($args['is_banned'] === true): ?>
                 <div class="banned-message">
@@ -20,7 +22,6 @@
                     <p>Votre compte est actif depuis le <?= $args['created_at']; ?> .</p>
                 </div>
             <?php endif; ?>
-        </dl>
     </section>
     <section>
         <h2>Mes articles</h2>

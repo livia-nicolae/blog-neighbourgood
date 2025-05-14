@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -10,6 +10,8 @@
 
 <body>
     <header>
+        <h1>Bienvenue sur NeighbourGood Marseille !</h1>
+        <p>Votre source d'informations et d'histoires locales au cœur de nos quartiers.</p>
         <nav>
             <ul>
                 <!-- Page d'accueil -->
@@ -52,6 +54,5 @@
                 <?php } ?>
             </ul>
         </nav>
-        <h1>Bienvenue sur NeighbourGood Marseille !</h1>
-        <p>Votre source d'informations et d'histoires locales au cœur de nos quartiers.</p>
+
     </header>

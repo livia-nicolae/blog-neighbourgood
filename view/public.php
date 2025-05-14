@@ -1,6 +1,7 @@
 <main>
-    <section  class="articles">
-    <h2>Derniers Articles</h2>
+
+    <section class="articles">
+        <h2>Derniers Articles</h2>
         <?php foreach ($args['listArticle'] as $article) { ?>
             <article class="article-item">
                 <h3><a href="/ctrl/article-show.php?id=<?= $article['id'] ?>"><?= ($article['title']) ?></a></h3>
@@ -14,13 +15,13 @@
     <aside class="sidebar">
         <h2>Catégories</h2>
         <ul>
-        <?php foreach ($args['listCategory'] as $category): ?>
-            <li>
-                <a href="/ctrl/category.php?id=<?= $category['id'] ?>">
-                    <?= ($category['name']) ?>
-                </a>
-            </li>
-        <?php endforeach; ?>
+            <?php foreach ($args['listCategory'] as $category): ?>
+                <li>
+                    <a href="/ctrl/category.php?id=<?= $category['id'] ?>">
+                        <?= ($category['name']) ?>
+                    </a>
+                </li>
+            <?php endforeach; ?>
         </ul>
-
+    </aside>
 </main>

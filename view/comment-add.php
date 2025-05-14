@@ -1,6 +1,7 @@
+
 <main class="container">
 
-    <h1><?= ($args['article']['title'] ?? 'Article non trouvé') ?></h1>
+    <h2><?= ($args['article']['title'] ?? 'Article non trouvé') ?></h2>
     <p class="publish-date">Publié le : <?= isset($args['article']['published_at']) ? date('d/m/Y à H:i', strtotime($args['article']['published_at'])) : '' ?></p>
 
     <article class="article-full">

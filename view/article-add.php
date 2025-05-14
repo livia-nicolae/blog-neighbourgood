@@ -1,6 +1,6 @@
 <body>
     <div class="container">
-        <h1>Ajouter un nouvel article</h1>
+        <h2>Ajouter un nouvel article</h2>
 
         <form action="/ctrl/article-add.php" method="post">
 
@@ -22,7 +22,7 @@
 
                         <option value="<?= $cat['id'] ?>"><?= $cat['name'] ?></option>
                     <?php } ?>
-                    
+
                 </select>
             </div>
 
@@ -32,4 +32,4 @@
     </div>
 
     </form>
-    </div>
+</body>
