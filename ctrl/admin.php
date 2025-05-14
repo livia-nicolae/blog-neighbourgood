@@ -42,9 +42,12 @@ class Admin extends Ctrl
         $this->addViewArg('created_at', $creationDate);
         $this->addViewArg('is_banned', $is_banned);
 
-        //Charge la liste des comptes
+        //Liste les articles et les expose à la vue
+        $listArticle = LibBlog::listArticle();
+        $this->addViewArg('listArticle', $listArticle);
+
+        //Liste les comptes
         $listAccount = LibUser::listAccount();
-        //L'expose à la vue
         $this->addViewArg('listAccount', $listAccount);
 
         //Charge les articles publiés par l'utilisateur

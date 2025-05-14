@@ -23,6 +23,34 @@
         </dl>
     </section>
     <section>
+        <h2>Liste des articles (Administration)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Titre</th>
+                    <th>Publié</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($args['listArticle'] as $article): ?>
+                    <tr>
+                        <td><?= ($article['title']) ?></td>
+                        <td><?= $article['is_published'] ? 'Oui' : 'Non' ?></td>
+                        <td>
+                            <?php if ($article['is_published']): ?>
+                                <a href="/ctrl/article-hide.php?id=<?= $article['id'] ?>">Masquer</a>
+                            <?php else: ?>
+                                <a href="/ctrl/article-publish.php?id=<?= $article['id'] ?>">Publier</a>
+                            <?php endif; ?>
+                            <a href="/article/<?= $article['id'] ?>">Consulter</a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </section>
+    <section>
         <h2>Gestion des Utilisateurs</h1>
             <table class="user-table">
                 <thead>
@@ -51,12 +79,12 @@
                             </td>
                             <td>
                                 <?php if ($user['is_banned']): ?>
-                                    <form action="/admin/user/unban" method="post" style="display: inline;">
+                                    <form action="/ctrl/account-disban.php?id=<?= $user['id'] ?>" method="post" style="display: inline;">
                                         <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                                         <button type="submit" class="unban-button">Débannir</button>
                                     </form>
                                 <?php else: ?>
-                                    <form action="/admin/user/ban" method="post" style="display: inline;">
+                                    <form action="/ctrl/account-ban.php?id=<?= $user['id'] ?>" method="post" style="display: inline;">
                                         <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
                                         <button type="submit" class="ban-button">Bannir</button>
                                     </form>

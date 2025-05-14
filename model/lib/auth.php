@@ -38,6 +38,8 @@ class user
         }
         return $user;
     }
+
+    //Liste des tous comptes
     public static function listAccount(): array
     {
         $query = 'SELECT account.id, account.username, account.email, account.role, account.created_at, account.updated_at, account.is_banned';
@@ -48,4 +50,27 @@ class user
 
         return $listAccounts;
     }
+
+    //Interdit un utilisateur 
+    public static function banAccount($id): bool
+    {
+        $query = 'UPDATE account SET is_banned = 1 WHERE id = :id;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $successOrFailure = $statement->execute();
+
+        return $successOrFailure;
+    }
+
+    //Debloque un utilisateur
+     public static function disbanAccount($id): bool
+    {
+        $query = 'UPDATE account SET is_banned = 0 WHERE id = :id;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $successOrFailure = $statement->execute();
+
+        return $successOrFailure;
+    }
+
 }

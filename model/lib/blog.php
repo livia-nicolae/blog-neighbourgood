@@ -146,5 +146,25 @@ class blog
 
         return $accountUsername;
     }
+    //Publie un article
+    public static function publishArticle($id): bool
+    {
+        $query = 'UPDATE article SET is_published = 1, published_at = NOW() WHERE article.id = :id;';
+        $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $successOrFailure = $statement->execute();
+
+        return $successOrFailure;
+    }
     
+    //Masque un article déjà publié
+    public static function hideArticle($id): bool
+    {
+        $query = 'UPDATE article SET is_published = 0 WHERE id = :id;';
+         $statement = LibDb::connect()->prepare($query);
+        $statement->bindParam(':id', $id);
+        $successOrFailure = $statement->execute();
+
+        return $successOrFailure;
+    }
 }
