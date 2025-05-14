@@ -51,7 +51,7 @@ class blog
     //Liste les catégories
     public static function listCategory(): array
     {
-        $query = 'SELECT category.id, category.name FROM category;';
+        $query = 'SELECT category.id, category.name FROM category ORDER BY category.display_rank ASC, category.name ASC;';
         $statement = LibDb::connect()->prepare($query);
         $statement->execute();
         $listCategory = $statement->fetchAll(PDO::FETCH_ASSOC);

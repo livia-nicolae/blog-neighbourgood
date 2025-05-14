@@ -7,6 +7,9 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/ctrl/_core/ctrlI.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/model/lib/blog.php';
+
+use App\Model\Lib\blog as LibBlog;
 
 abstract class Ctrl implements CtrlI
 {
@@ -18,6 +21,10 @@ abstract class Ctrl implements CtrlI
     {
         // Active le support de session
         session_start();
+
+        //Charge la liste de catégories
+        $listCategory = LibBlog::listCategory();
+        $this->addViewArg("listCategory", $listCategory);
 
         // Exécute le code spécifique au controller 'enfant'
         $this->do();

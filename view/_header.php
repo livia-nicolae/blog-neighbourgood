@@ -15,7 +15,7 @@
         <nav>
             <ul>
                 <!-- Page d'accueil -->
-                <li><a href="/ctrl/public.php">Page d'accueil</a></li>
+                <li><a href="/ctrl/public.php">Derniers articles</a></li>
 
                 <!-- S'inscrire -->
                 <?php if (!isset($_SESSION['user'])) { ?>
@@ -26,6 +26,19 @@
                 <?php if (!isset($_SESSION['user'])) { ?>
                     <li><a href="/ctrl/login-display.php">Se connecter</a></li>
                 <?php } ?>
+
+                <!-- Catégories -->
+                <li> Catégories
+                    <ul>
+                        <?php foreach ($args['listCategory'] as $category): ?>
+                            <li>
+                                <a href="/ctrl/category.php?id=<?= $category['id'] ?>">
+                                    <?= ($category['name']) ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </li>
 
                 <!-- Visualiser mon profil -->
                 <?php if (isset($_SESSION['user'])) { ?>

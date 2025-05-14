@@ -11,17 +11,4 @@
             </article>
         <?php } ?>
     </section>
-
-    <aside class="sidebar">
-        <h2>Catégories</h2>
-        <ul>
-            <?php foreach ($args['listCategory'] as $category): ?>
-                <li>
-                    <a href="/ctrl/category.php?id=<?= $category['id'] ?>">
-                        <?= ($category['name']) ?>
-                    </a>
-                </li>
-            <?php endforeach; ?>
-        </ul>
-    </aside>
 </main>
