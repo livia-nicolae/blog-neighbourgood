@@ -9,8 +9,6 @@
             <dt>Email: </dt>
             <dd><?= $args['email']; ?></dd>
 
-            <dt>Rôle: </dt>
-            <dd><?= $args['role'];; ?></dd>
         </dl>
 
             <?php if ($args['is_banned'] === true): ?>
@@ -23,16 +21,16 @@
                 </div>
             <?php endif; ?>
     </section>
-    <section>
+     <section>
         <h2>Mes articles</h2>
         <?php if (!empty($args['articlesByAccount'])): ?>
             <ul class="article-list">
                 <?php foreach ($args['articlesByAccount'] as $article): ?>
                     <li class="article-item">
-                        <h3><a href="/article/<?= $article['id'] ?>"><?= $article['title'] ?></a></h3>
+                        <h3><a href="/ctrl/article-show.php?id=<?= $article['id'] ?>"><?= $article['title'] ?></a></h3>
                         <p class="publish-date">Publié le : <?= date('d/m/Y à H:i', strtotime($article['published_at'])) ?></p>
                         <p><?= substr(nl2br($article['content']), 0, 200) ?>...</p>
-                        <p><a href="/article/<?= $article['id'] ?>">Lire la suite</a></p>
+                        <p><a href="/ctrl/article-show.php?id=<?= $article['id'] ?>">Lire la suite</a></p>
                     </li>
                 <?php endforeach; ?>
             </ul>
@@ -48,7 +46,7 @@
                 <?php foreach ($args['commentsByAccount'] as $comment): ?>
                     <li class="comment-item">
                         <p class="comment-date">Le <?= date('d/m/Y à H:i', strtotime($comment['created_at'])) ?></p>
-                        <p>Sur l'article: <strong> <?= $comment['article_title'] ?></strong></a></p>
+                        <p>Sur l'article: <strong><a href="/ctrl/article-show.php?id=<?= $comment['article_id'] ?>"><?= ($comment['article_title']) ?></a></strong></p>
                         <p class="comment-content"><?= nl2br($comment['content']) ?></p>
                     </li>
                 <?php endforeach; ?>

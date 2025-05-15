@@ -58,8 +58,18 @@ class Admin extends Ctrl
 
         //Charge les commentaires publiés par l'utilisateur
         $commentsByAccount = LibBlog::listCommentByAccount($id);
+        
+        //Construit une variable qui contient le titre d'article pour chaque commentaire
+        $commentsByAccountAug = [];
+
+        // Récupérer les titres des articles pour chaque commentaire
+        foreach ($commentsByAccount as $comment) {
+            $articleName = LibBlog::getArticle($comment['article_id']);
+            $comment['article_title'] = $articleName['title'];
+            $commentsByAccountAug[] = $comment;
+        }
         //Les expose à la vue
-        $this->addViewArg('commentsByAccount', $commentsByAccount);
+        $this->addViewArg('commentsByAccount', $commentsByAccountAug);
     }
 }
 

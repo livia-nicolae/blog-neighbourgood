@@ -1,4 +1,3 @@
-
 <main class="container">
 
     <h2><?= ($args['article']['title'] ?? 'Article non trouvé') ?></h2>
@@ -10,7 +9,18 @@
 
     <section class="comments-section">
         <h2>Commentaires</h2>
-
+        <div class="comment-form">
+            <?php if (isset($_SESSION['user'])): ?>
+                <?php if (!isset($_SESSION['user']['is_banned']) || $_SESSION['user']['is_banned'] == false): ?>
+                    <textarea name="comment" id="comment" placeholder="Laisser un commentaire"></textarea>
+                    <button onclick="window.location.href='/ctrl/comment-add-display.php?article_id=<?= $args['article']['id'] ?>'">Poster le commentaire</button>
+                <?php else: ?>
+                    <p>Vous ne pouvez pas laisser de commentaire car votre compte est banni.</p>
+                <?php endif; ?>
+            <?php else: ?>
+                <p>Vous devez être connecté pour laisser un commentaire. <a href="/ctrl/login-display.php">Se connecter</a></p>
+            <?php endif; ?>
+        </div>
         <?php if (!empty($args['listComment'])): ?>
             <ul class="comments-list">
                 <?php foreach ($args['listComment'] as $comment): ?>
@@ -23,9 +33,6 @@
         <?php else: ?>
             <p>Soyez le premier à commenter cet article !</p>
         <?php endif; ?>
-        <div class="comment-form">
-            <a href="/ctrl/comment-add-display.php?article_id=<?= $args['article']['id'] ?>">Laisser un commentaire</a>
-        </div>
 
     </section>
 </main>

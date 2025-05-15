@@ -15,7 +15,9 @@
         <nav>
             <ul>
                 <!-- Page d'accueil -->
-                <li><a href="/ctrl/public.php">Derniers articles</a></li>
+                <?php if ($_SERVER['REQUEST_URI'] !== '/ctrl/public.php') { ?>
+                    <li><a href="/ctrl/public.php">Derniers articles</a></li>
+                <?php } ?>
 
                 <!-- S'inscrire -->
                 <?php if (!isset($_SESSION['user'])) { ?>
@@ -27,18 +29,6 @@
                     <li><a href="/ctrl/login-display.php">Se connecter</a></li>
                 <?php } ?>
 
-                <!-- Catégories -->
-                <li> Catégories
-                    <ul>
-                        <?php foreach ($args['listCategory'] as $category): ?>
-                            <li>
-                                <a href="/ctrl/category.php?id=<?= $category['id'] ?>">
-                                    <?= ($category['name']) ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </li>
 
                 <!-- Visualiser mon profil -->
                 <?php if (isset($_SESSION['user'])) { ?>
@@ -55,10 +45,26 @@
                 <!-- Ajouter un article -->
                 <li>
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <a href="/ctrl/article-add-display.php">Ajouter un article</a>
+                        <?php if (!isset($_SESSION['user']['is_banned']) || $_SESSION['user']['is_banned'] == false): ?>
+                            <a href="/ctrl/article-add-display.php">Ajouter un article</a>
+                        <?php else : ?>
+                            <a href="/ctrl/profile.php">Voir mon profil</a>
+                        <?php endif; ?>
                     <?php else : ?>
-                        <a href="/ctrl/login-display.php">Ajouter un article</a>
+                        <a href="/ctrl/login-display.php">Connectez-vous</a>
                     <?php endif; ?>
+                </li>
+                <!-- Catégories -->
+                <li> Catégories
+                    <ul>
+                        <?php foreach ($args['listCategory'] as $category): ?>
+                            <li>
+                                <a href="/ctrl/category.php?id=<?= $category['id'] ?>">
+                                    <?= ($category['name']) ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
                 </li>
 
                 <!-- Se déconnecter -->
