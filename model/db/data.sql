@@ -4,22 +4,23 @@ USE `600-blog-LNI`
 START TRANSACTION
 ;
 
-INSERT INTO category (id, name) VALUES 
-(110, 'Actualités du Quartier')
-,(120, 'Vie Pratique')
-,(130, 'Initiatives Locales')
-,(140, 'Culture & Loisirs')
-,(150, 'Paroles de Voisins')
+INSERT INTO category (id, name, display_rank) VALUES 
+(110, 'Actualités du Quartier', 1)
+,(120, 'Vie Pratique', 2)
+,(130, 'Initiatives Locales', 3)
+,(140, 'Culture & Loisirs', 1)
+,(150, 'Paroles de Voisins', 2)
 ;
 
 INSERT INTO account (id, username, email, password, hashed_password, role, created_at, is_banned)
 VALUES
-(210, 'marseillais13', 'contact@neighbourgood.fr', 'motdepasse1', '$2y$10$abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmn', 'admin', '2025-05-05 11:15:00', FALSE)
-,(220, 'habitant', 'habitant@quartier.com', 'securite123', '$2y$10$zyxwvutsrqponmlkjihgfedcba9876543210zyxwvutsrqponm', 'registered', '2025-05-05 11:20:00', FALSE)
-,(230, 'curieux', 'curieux@ailleurs.net', 'visiteur42', '$2y$10$lkjhgfdsaqwertyuiopzxcvbnm1234567890lkjhgfdsaqwerty', 'visitor', '2025-05-05 11:25:00', FALSE)
-,(240, 'voisin_sympa', 'sympa@voisinage.org', 'entraide2025', '$2y$10$poiuytrewqasdfghjklmnbvcxz0987654321poiuytrewqasdf', 'registered', '2025-05-05 11:30:00', FALSE)
-,(250, 'modo_du_coin', 'modo@neighbourgood.fr', 'superviseur', '$2y$10$mnbvcxzlkjhgfdsaqwertyuiop0123456789mnbvcxzlkjhgf', 'admin', '2025-05-05 11:35:00', FALSE)
+(210, 'marseillais13', 'contact@neighbourgood.fr', 'test', '$2y$10$abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmn', 'admin', '2025-05-05 11:15:00', FALSE)
+,(220, 'habitant', 'habitant@quartier.com', 'test', '$2y$10$zyxwvutsrqponmlkjihgfedcba9876543210zyxwvutsrqponm', 'registered', '2025-05-05 11:20:00', FALSE)
+,(230, 'curieux', 'curieux@ailleurs.net', 'test', '$2y$10$lkjhgfdsaqwertyuiopzxcvbnm1234567890lkjhgfdsaqwerty', 'registered', '2025-05-05 11:25:00', FALSE)
+,(240, 'voisin_sympa', 'sympa@voisinage.org', 'test', '$2y$10$poiuytrewqasdfghjklmnbvcxz0987654321poiuytrewqasdf', 'registered', '2025-05-05 11:30:00', FALSE)
+,(250, 'modo_du_coin', 'modo@neighbourgood.fr', 'test', '$2y$10$mnbvcxzlkjhgfdsaqwertyuiop0123456789mnbvcxzlkjhgf', 'admin', '2025-05-05 11:35:00', FALSE)
 ;
+
 
 INSERT INTO article (id, title, content, account_id, category_id, is_published)
 VALUES

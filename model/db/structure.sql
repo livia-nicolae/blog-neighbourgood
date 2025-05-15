@@ -17,6 +17,7 @@ USE `600-blog-LNI`
 CREATE TABLE category (
     id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY
     ,name VARCHAR(100) UNIQUE NOT NULL COMMENT 'Nom catégorie'
+    ,display_rank INT NOT NULL COMMENT 'Ordre'
 )
 ;
 
@@ -26,7 +27,7 @@ CREATE TABLE account (
     ,email VARCHAR(100) UNIQUE NOT NULL COMMENT 'Email'
     ,password VARCHAR(255) NOT NULL COMMENT 'Mod de passe'
     ,hashed_password varchar(255) NOT NULL COMMENT 'Mod de passe haché'
-    ,role ENUM('visitor', 'registered', 'admin') DEFAULT 'registered' NOT NULL
+    ,role ENUM('registered', 'admin') DEFAULT 'registered' NOT NULL
     ,created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ,updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     ,is_banned BOOLEAN DEFAULT FALSE
