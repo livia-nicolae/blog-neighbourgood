@@ -34,7 +34,7 @@
                 <?php if (isset($_SESSION['user'])) { ?>
                     <li>
                         <?php if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin'): ?>
-                            <a href="/ctrl/admin.php"><?= $_SESSION['user']['email'] ?> (Admin)</a>
+                            <a href="/ctrl/admin.php"><?= $_SESSION['user']['email'] ?></a>
                         <?php endif; ?>
                         <?php if (!(isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'admin')): ?>
                             <a href="/ctrl/profile.php"><?= $_SESSION['user']['email'] ?></a>
@@ -45,10 +45,14 @@
                 <!-- Ajouter un article -->
                 <li>
                     <?php if (isset($_SESSION['user'])) : ?>
-                        <?php if (!isset($_SESSION['user']['is_banned']) || $_SESSION['user']['is_banned'] == false): ?>
-                            <a href="/ctrl/article-add-display.php">Ajouter un article</a>
+                        <?php if ($_SESSION['user']['is_banned'] == false) : ?>
+                            <a href="/ctrl/article-add-display.php">
+                                Ajouter un article
+                            </a>
                         <?php else : ?>
-                            <a href="/ctrl/profile.php">Voir mon profil</a>
+                            <a href="/ctrl/profile.php">
+                                Ajouter un article
+                            </a>
                         <?php endif; ?>
                     <?php else : ?>
                         <a href="/ctrl/login-display.php">Connectez-vous</a>

@@ -11,7 +11,7 @@
 
         </dl>
 
-            <?php if ($args['is_banned'] === true): ?>
+            <?php if ($args['is_banned']): ?>
                 <div class="banned-message">
                     <p style="color: red; font-weight: bold;">Votre compte est actuellement banni. </p>
                 </div>

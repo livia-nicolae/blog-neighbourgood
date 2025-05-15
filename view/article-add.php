@@ -26,10 +26,11 @@
                 </select>
             </div>
 
-    </div>
-    <div class="form-group">
-        <button type="submit">Enregistrer l'article</button>
-    </div>
 
-    </form>
+            <div class="form-group">
+                <button type="submit">Enregistrer l'article</button>
+            </div>
+
+        </form>
+    </div>
 </body>
