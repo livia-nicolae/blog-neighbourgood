@@ -1,0 +1,172 @@
+main {
+    padding: 20px;
+    margin-top: 20px; /* Add some space between header and main */
+    min-height: calc(100vh - 200px);
+}
+
+.articles {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.articles h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    text-align: center;
+}
+
+.article-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.article-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.article-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.article-item h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.article-item h3 a:hover {
+    color: var(--color-secondary);
+}
+
+.publish-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.read-more {
+    margin-top: 15px;
+}
+
+.read-more a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.read-more a:hover {
+    color: var(--color-secondary);
+}
+
+@media (max-width: 768px) {
+    .articles h2 {
+        font-size: 1.75em;
+    }
+
+    .article-item {
+        padding: 15px;
+    }
+
+    .article-item h3 {
+        font-size: 1.25em;
+    }
+}
+
+/* CSS for category view */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: var(--color-primary);
+    text-align: center;
+}
+
+.article-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.article-list .article-item {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+}
+
+.article-list .article-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.article-list .article-item h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.article-list .article-item h3 a {
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.article-list .article-item h3 a:hover {
+    color: var(--color-secondary);
+}
+
+.article-list .article-item .publish-date {
+    font-size: 0.9em;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+.article-list .article-item .article-content {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.article-list .article-item .read-more-link {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s ease;
+}
+
+.article-list .article-item .read-more-link:hover {
+    color: var(--color-secondary);
+}
+
+.no-articles {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .container h2 {
+        font-size: 1.75em;
+    }
+
+    .article-list .article-item {
+        padding: 15px;
+    }
+
+    .article-list .article-item h3 {
+        font-size: 1.25em;
+    }
+}
